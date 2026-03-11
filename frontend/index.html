@@ -43,18 +43,18 @@
             function sendMessage() {
                 var newMessage = document.getElementById("message");
                 if(newMessage != null) {
-                    console.log(newMessage)
+                    conn.send(newMessage.value);
                 }
                 return false;
             }
 
             window.onload = function() {
                 // Configure button actions
-                document.getElementById("chatroom-selection").onsubmit = changeChatRoom();
-                document.getElementById("chatroom-message").onsubmit = sendMessage();
-
+                document.getElementById("chatroom-selection").onsubmit = changeChatRoom;
+                document.getElementById("chatroom-message").onsubmit = sendMessage;
                 if (window["WebSocket"]) {
-                    console.log("Supports WebSockets");
+                    alert("Supports WebSockets");
+                    //console.log("Supports WebSockets");
                     // connect to WebSocket
                     conn = new WebSocket("ws://" + document.location.host + "/ws");
                 } else {
